@@ -19,7 +19,6 @@ header {
   justify-content: flex-end;
   background-color: var(--secondary-color);
 }
-
 .search {
   background-color: transparent;
   border: 2px solid var(--primary-color);
@@ -102,4 +101,41 @@ main {
 
 .movie:hover .overview {
   transform: translateY(0);
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 150px;
+  left: -1475px;
+}
+.dropdown span {
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.dropdown-content ul {
+  list-style-type: none;
+}
+.dropdown-content ul li {
+  padding: 5px 0 5px 0;
+}
+.dropdown-content ul li a {
+  outline: none;
+  text-decoration: none;
+  cursor: pointer;
+  color: white;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--primary-color);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
 }
