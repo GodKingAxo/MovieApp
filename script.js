@@ -1,6 +1,7 @@
 //TODO: Create genre tag. Sort by certain genres
-// Create popularity ascending a.k.a the least popular to most popular
-//Click-through into seperate webpage about the movie: Showing a trailer, images of the movie, full description, and cast.
+//When sorting by certain genres I want it to take into account the genre selected and sort it based on popularity descending.
+//The movies have 'genre_ids' tied to them, so I need to create a method that checks what ids a certain movie has and compare it to the base_ids of each genre
+//The main way I can think of going about the genre sorting is by creating different pages for each genre and then implementing the above items.
 const API_KEY = 'ca34b1ab541651378e4fd47bce303f53'
 const API_URL = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${API_KEY}&page=1`
 const IMG_PATH = "https://image.tmdb.org/t/p/w1280"
@@ -10,29 +11,45 @@ const form = document.getElementById('form')
 const search = document.getElementById('search')
 const main = document.getElementById('main')
 
-
 //Get Intial Movies
 getMovies(API_URL);
-
 getGenres(GENRE_API);
+
 async function getGenres(url) {
     const res = await fetch(url)
     const data = await res.json()
-    console.log(data.genres)
+    const genreData = data.genres;
+    genreData.forEach((genre) => {
+        const genreID = genre.id
+        const genreName = genre.name
+        console.log(genreName)
+        //Start creating webpages for each genre
+    })
+}
+function compareGenreID(genre_id, id) {
+    
+    if(genre_id === id){
+        console.log('Matching IDs!')
+    } else {
+        console.log('Not Matching IDs')
+    }
 }
 async function getMovies(url) {
     const res = await fetch(url)
     const data = await res.json()
-    console.log(data.results)
-    showMovies(data.results)   
+    // console.log(data.results)
+    const movieID = data.results
+    movieID.forEach((id) => {
+        const title = id.title
+        const genreID = id.genre_ids
+        // console.log(title + ' / ' + genreID)
+    })
+    showMovies(data.results)  
 }
-
-
 function showMovies(movies) {
     main.innerHTML = ''
     movies.forEach((movie) => {
         const { title, poster_path, vote_average, overview} = movie
-
         const movieEl = document.createElement('div')
         movieEl.classList.add('movie')
 
