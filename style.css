@@ -102,7 +102,9 @@ main {
 .movie:hover .overview {
   transform: translateY(0);
 }
-
+.genre-tag {
+  
+}
 .dropdown {
   position: relative;
   display: inline-block;
@@ -112,7 +114,7 @@ main {
 }
 @media only screen and (max-width: 1920) {
   .dropdown {
-    left: -1475px;
+    left: -1575px;
     top: 4px;
   }
   .dropdown span {
