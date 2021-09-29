@@ -11,8 +11,86 @@ const WITH_GENRE = `https://api.themoviedb.org/3/discover/movie?with_genres=18&a
 const form = document.getElementById('form')
 const search = document.getElementById('search')
 const main = document.getElementById('main')
+const movieInfo = document.getElementById('movie-info')
 
-
+const genres = [{
+    "id": 28,
+    "name": "Action" 
+},
+{
+    "id": 12,
+    "name": "Adventure"
+},
+{
+    "id": 16,
+    "name": "Animation"
+},
+{
+    "id": 35,
+    "name": "Comedy"
+},
+{
+    "id": 80,
+    "name": "Crime"
+},
+{
+    "id": 99,
+    "name": "Documentary"
+},
+{
+    "id": 18,
+    "name": "Drama"
+},
+{
+    "id": 10751,
+    "name": "Family"
+},
+{
+    "id": 14,
+    "name": "Fantasy"
+},
+{
+    "id": 36,
+    "name": "History"
+},
+{
+    "id": 27,
+    "name": "Horror"
+},
+{
+    "id": 10402,
+    "name": "Music"
+},
+{
+    "id": 9648,
+    "name": "Mystery"
+},
+{
+    "id": 10749,
+    "name": "Romance"
+},
+{
+    "id": 878,
+    "name": "Science Fiction"
+},
+{
+    "id": 10770,
+    "name": "TV Movie"
+},
+{
+    "id": 53,
+    "name": "Thriller"
+},
+{
+    "id": 10752,
+    "name": "War"
+},
+{
+    "id": 37,
+    "name": "Western"
+},
+]
+console.log(genres)
 function compareGenreID(genre_id, id) {
     
     if(genre_id === id){
@@ -42,18 +120,16 @@ async function getAPIS(discover, genre) {
     discoverData.results.forEach((result) => {
          const movieGenreIDS = result.genre_ids // Gives me a list of genre_ids for each movie on this page. The genre_ids return another array
         //  console.log(movieGenreIDS) // Looks like the majority of movies have a max of 4 ids, so I would have to set up 4 spans or tags for each genre
-    })
-    
-    const genres = []
-    const genreObj = {} //I think I need to just create an object and not use an array but still not sure
-    genreData.genres.forEach((genre) => {
-        const genreIDS = genre.id
-        const genreName = genre.name
-        // console.log(genreIDS + ' / ' + genreName)
-        genres.push(genreIDS, genreName)
-    }) // Loops through genreData api information and it only pushes each new element into the array, it doesn't make them objects which is what I am trying to do
 
-    console.log(genres)
+        const genresEl = document.createElement('span') // Trying to add the span element to the movie info div
+        main.appendChild(genresEl)
+        if(movieGenreIDS.includes(28)) {
+            console.log("This is an action movie")
+
+        } else {
+            console.log("no")
+        }
+    })
 }
 function showMovies(movies) {
     main.innerHTML = ''
@@ -67,7 +143,6 @@ function showMovies(movies) {
         <div class="movie-info" id="movie-info>
           <h3>${title}</h3>
           <span class="${getClassByRate(vote_average)}">${vote_average}</span>
-          <span class="genre-tag"></span>
         </div>
         <div class="overview">
           <h3>Overview</h3>

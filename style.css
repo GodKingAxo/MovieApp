@@ -19,6 +19,14 @@ header {
   justify-content: flex-end;
   background-color: var(--secondary-color);
 }
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Search */
 .search {
   background-color: transparent;
   border: 2px solid var(--primary-color);
@@ -35,13 +43,9 @@ header {
   outline: none;
   background-color: var(--primary-color);
 }
+/* End Search */
 
-main {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
+/* Movie */
 .movie {
   width: 300px;
   margin: 1rem;
@@ -83,6 +87,13 @@ main {
 .movie-info span.red {
   color: red;
 }
+
+.movie-info span.genre {
+  color: white;
+}
+/* End Movie */
+
+/* Overview */
 .overview {
   background-color: white;
   padding: 2rem;
@@ -102,9 +113,9 @@ main {
 .movie:hover .overview {
   transform: translateY(0);
 }
-.genre-tag {
-  
-}
+/* End Overview */
+
+/* Dropdown */
 .dropdown {
   position: relative;
   display: inline-block;
@@ -154,3 +165,4 @@ main {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+/* End Dropdown */
