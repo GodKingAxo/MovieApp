@@ -89,18 +89,17 @@ const genres = [{
     "name": "Western"
 },
 ]
-// console.log(genres)
-function compareGenreID(genre_id, id) {
-    
-    if(genre_id == id){
-        console.log('Matching IDs!')
-    } else {
-        console.log('Not Matching IDs')
-    }
-}
 
 //Get Intial Movies
 getAPIS(API_URL, GENRE_API)
+
+getMovies(API_URL);
+
+async function getMovies(url) {
+    const res = await fetch(url)
+    const data = await res.json()
+    showMovies(data.results)   
+}
 
 
 async function getAPIS(discover, genre) {
@@ -133,12 +132,11 @@ function showMovies(movies) {
         const { title, poster_path, vote_average, overview, genre_ids} = movie
         const movieEl = document.createElement('div')
         movieEl.classList.add('movie')
-        console.log(genre_ids)
         movieEl.innerHTML = `
         <img src="${IMG_PATH + poster_path}" alt="${title}" />
         <div class="movie-info" id="movie-info>
           <h3>${title}</h3>
-          <span class="${getClassByRate(vote_average)}">${vote_average}</span>
+          <span class= "${getClassByRate(vote_average)}">${vote_average}</span>
         </div>
         <div class="overview">
           <h3>Overview</h3>
@@ -153,30 +151,42 @@ function showMovies(movies) {
 
       if (genre_ids.includes(28)) {
           genreEl.innerHTML = "<span class='genre action'>Action</span>"
-      } else {
+      }    else {
           console.log("N/A")
       }
+      if (genre_ids.includes(28) && genre_ids.includes(12)) {
+        genreEl.innerHTML = "<span class='genre action'>Action</span> <span class = 'genre adventure'>Adventure</span>"
+    }    else {
+        console.log("N/A")
+    }
+    if (genre_ids.includes(28) && genre_ids.includes(12) && genre_ids.includes(35)) {
+        genreEl.innerHTML = "<span class='genre action'>Action</span> <span class = 'genre adventure'>Adventure</span> <span class = 'genre comedy'>Comedy</span>"
+    }    else {
+        console.log("N/A")
+    }
+    if (genre_ids.includes(28) && genre_ids.includes(12) && genre_ids.includes(35) && genre_ids.includes(14)) {
+        genreEl.innerHTML = "<span class='genre action'>Action</span> <span class = 'genre adventure'>Adventure</span> <span class = 'genre comedy'>Comedy</span> <span class = 'genre fantasy'>Fantasy</span>"
+    }    else {
+        console.log("N/A")
+    }
+    //I know for a fact that there is a better way to do this way of adding the genres onto each movie-info div but at this point im kind of done with this for now. Could be improved in the future for sure
       movieEl.appendChild(genreEl)
     })  
 }
-
-function sortGenre() {
-
-}
 function getClassByRate(vote) {
     if(vote >= 8) {
-        return 'green'
+        return "green"
     } else if(vote >= 5) {
-        return 'orange'
+        return "orange"
     } else {
-        return 'red'
+        return "red"
     }
 }
 form.addEventListener('submit', (e) => {
     e.preventDefault()
     const searchTerm = search.value
     if(searchTerm && searchTerm !== '') {
-        getAPIS(SEARCH_API + searchTerm)
+        getMovies(SEARCH_API + searchTerm)
         search.value = ''
     } else {
         window.location.reload()

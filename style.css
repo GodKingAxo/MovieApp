@@ -90,6 +90,9 @@ main {
 
 .movie-info span.genre {
   color: white;
+  font-size: 10px;
+  border-radius: 30px;
+  padding: 10px;
 }
 /* End Movie */
 
@@ -114,55 +117,3 @@ main {
   transform: translateY(0);
 }
 /* End Overview */
-
-/* Dropdown */
-.dropdown {
-  position: relative;
-  display: inline-block;
-  width: 150px;
-  left: -300px;
-  top: 4px;
-}
-@media only screen and (max-width: 1920) {
-  .dropdown {
-    left: -1575px;
-    top: 4px;
-  }
-  .dropdown span {
-    font-size: 1.5rem;
-  }
-}
-.dropdown span {
-  color: white;
-  font-weight: bold;
-  font-size: 1.3rem;
-}
-
-.dropdown-content ul {
-  list-style-type: none;
-}
-.dropdown-content ul li {
-  padding: 5px 0 5px 0;
-}
-.dropdown-content ul li a {
-  outline: none;
-  text-decoration: none;
-  cursor: pointer;
-  color: white;
-}
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: var(--primary-color);
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  padding: 12px 16px;
-  z-index: 1;
-}
-.dropdown-content ul li a:active {
-  opacity: 0.8;
-}
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-/* End Dropdown */
