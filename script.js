@@ -113,19 +113,16 @@ async function getAPIS(discover, genre) {
 
 
     showMovies(discoverData.results)
-
+    sortGenre(discoverData)
     //TODO: Add a tag  to each movie element with its correct genre. For example: If a movie has the id of "28" then it will have the little tag  "Action"
     // Similar to how I have the span rating set up. I basically want to do the exact same thing, but apply it to each movie element and make sure they have all the correct genres tied to them
 
     discoverData.results.forEach((result) => {
          const movieGenreIDS = result.genre_ids // Gives me a list of genre_ids for each movie on this page. The genre_ids return another array
         //  console.log(movieGenreIDS) // Looks like the majority of movies have a max of 4 ids, so I would have to set up 4 spans or tags for each genre
-
         const genresEl = document.createElement('span') // Trying to add the span element to the movie info div
-        main.appendChild(genresEl)
         if(movieGenreIDS.includes(28)) {
             console.log("This is an action movie")
-
         } else {
             console.log("no")
         }
@@ -143,6 +140,7 @@ function showMovies(movies) {
         <div class="movie-info" id="movie-info>
           <h3>${title}</h3>
           <span class="${getClassByRate(vote_average)}">${vote_average}</span>
+          <span class="genre">${genre_ids}</span>
         </div>
         <div class="overview">
           <h3>Overview</h3>
@@ -152,6 +150,9 @@ function showMovies(movies) {
     })  
 }
 
+function sortGenre() {
+
+}
 function getClassByRate(vote) {
     if(vote >= 8) {
         return 'green'
