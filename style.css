@@ -124,6 +124,17 @@ main {
   justify-content: flex-end;
   padding: 20px 30px 30px 0;
 }
+.pagination ul {
+  list-style-type: none;
+  text-decoration: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.pagination ul li a {
+  text-decoration: none;
+}
 
 .pagination .btn {
   padding: 20px;
