@@ -11,7 +11,6 @@ const WITH_GENRE = `https://api.themoviedb.org/3/discover/movie?with_genres=18&a
 const form = document.getElementById('form')
 const search = document.getElementById('search')
 const main = document.getElementById('main')
-const movieInfo = document.getElementById('movie-info')
 
 const genres = [{
     "id": 28,
@@ -90,10 +89,10 @@ const genres = [{
     "name": "Western"
 },
 ]
-console.log(genres)
+// console.log(genres)
 function compareGenreID(genre_id, id) {
     
-    if(genre_id === id){
+    if(genre_id == id){
         console.log('Matching IDs!')
     } else {
         console.log('Not Matching IDs')
@@ -121,11 +120,11 @@ async function getAPIS(discover, genre) {
          const movieGenreIDS = result.genre_ids // Gives me a list of genre_ids for each movie on this page. The genre_ids return another array
         //  console.log(movieGenreIDS) // Looks like the majority of movies have a max of 4 ids, so I would have to set up 4 spans or tags for each genre
         const genresEl = document.createElement('span') // Trying to add the span element to the movie info div
-        if(movieGenreIDS.includes(28)) {
-            console.log("This is an action movie")
-        } else {
-            console.log("no")
-        }
+        // if(movieGenreIDS.includes(28)) {
+        //     console.log("This is an action movie")
+        // } else {
+        //     console.log("no")
+        // }
     })
 }
 function showMovies(movies) {
@@ -134,19 +133,30 @@ function showMovies(movies) {
         const { title, poster_path, vote_average, overview, genre_ids} = movie
         const movieEl = document.createElement('div')
         movieEl.classList.add('movie')
-        // console.log(genreIDFilter)
+        console.log(genre_ids)
         movieEl.innerHTML = `
         <img src="${IMG_PATH + poster_path}" alt="${title}" />
         <div class="movie-info" id="movie-info>
           <h3>${title}</h3>
           <span class="${getClassByRate(vote_average)}">${vote_average}</span>
-          <span class="genre">${genre_ids}</span>
         </div>
         <div class="overview">
           <h3>Overview</h3>
           ${overview}
         </div>`
       main.appendChild(movieEl)
+
+      const genreEl = document.createElement('div')
+      genreEl.classList.add('movie-info')
+      genreEl.innerHTML = ''
+      movieEl.appendChild(genreEl)
+
+      if (genre_ids.includes(28)) {
+          genreEl.innerHTML = "<span class='genre action'>Action</span>"
+      } else {
+          console.log("N/A")
+      }
+      movieEl.appendChild(genreEl)
     })  
 }
 
@@ -166,7 +176,7 @@ form.addEventListener('submit', (e) => {
     e.preventDefault()
     const searchTerm = search.value
     if(searchTerm && searchTerm !== '') {
-        getMovies(SEARCH_API + searchTerm)
+        getAPIS(SEARCH_API + searchTerm)
         search.value = ''
     } else {
         window.location.reload()
