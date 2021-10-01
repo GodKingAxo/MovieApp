@@ -7,7 +7,7 @@
 
 const API_KEY = 'ca34b1ab541651378e4fd47bce303f53'
 let PAGE_NUM = 1
-const API_URL = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${API_KEY}&page=` //Only loads first page
+const API_URL = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${API_KEY}&page=${PAGE_NUM}` //Only loads first page
 const IMG_PATH = "https://image.tmdb.org/t/p/w1280"
 const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query="`
 const GENRE_API = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`
@@ -110,12 +110,13 @@ async function getAPIS(discover, genre) {
 
     const genreRes = await fetch(genre)
     const genreData = await genreRes.json()
+
+    showMovies(discoverData.results)
+
     let pages = discoverData.page
     console.log(pages)
-    showMovies(discoverData.results)
     pageTwo.addEventListener('click', () => {
-        pages++
-        console.log(pages)
+        PAGE_NUM + 1
     })
 }
 function showMovies(movies) {
