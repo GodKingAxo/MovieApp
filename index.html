@@ -29,11 +29,32 @@
     />
     <meta name="msapplication-TileColor" content="#da532c" />
     <meta name="theme-color" content="#ffffff" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="style.css" />
     <title>Movie App</title>
   </head>
   <body>
     <header>
+      <nav class="nav" id="nav">
+        <ul>
+          <li class="nav-items">
+            <a href="homepage.html"><i class="fas fa-home"></i></a>
+          </li>
+          <li class="nav-items active">
+            <a href="index.html">Most Popular</a>
+          </li>
+          <li class="nav-items"><a href="index.html">Action</a></li>
+          <li class="nav-items"><a href="index.html">Adventure</a></li>
+          <li class="nav-items"><a href="index.html">Comedy</a></li>
+          <li class="nav-items"><a href="index.html">Fantasy</a></li>
+        </ul>
+      </nav>
       <form id="form">
         <input type="text" id="search" class="search" placeholder="Search" />
       </form>
