@@ -1,5 +1,5 @@
 const API_KEY = 'ca34b1ab541651378e4fd47bce303f53'
-const API_URL = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${API_KEY}&page=1`
+const API_URL = `https://api.themoviedb.org/3/discover/movie?with_genres=28&sort_by=popularity.desc&api_key=${API_KEY}&page=1`
 const IMG_PATH = "https://image.tmdb.org/t/p/w1280"
 const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query="`
 const GENRE_API = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`
